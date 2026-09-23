@@ -1,0 +1,8 @@
+<odoo>
+    <record id="seq_riglog_material_handover" model="ir.sequence">
+        <field name="name">RigLog Material Handover</field>
+        <field name="code">riglog.material.handover</field>
+        <field name="prefix">MH/</field>
+        <field name="padding">5</field>
+    </record>
+</odoo>

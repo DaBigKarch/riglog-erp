@@ -1,0 +1,7 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_riglog_material_handover_user,riglog.material.handover.user,model_riglog_material_handover,riglog_materials.group_materials_user,1,1,1,0
+access_riglog_material_handover_manager,riglog.material.handover.manager,model_riglog_material_handover,riglog_materials.group_materials_manager,1,1,1,1
+access_riglog_material_handover_system,riglog.material.handover.system,model_riglog_material_handover,base.group_system,1,1,1,1
+access_riglog_material_handover_line_user,riglog.material.handover.line.user,model_riglog_material_handover_line,riglog_materials.group_materials_user,1,1,1,0
+access_riglog_material_handover_line_manager,riglog.material.handover.line.manager,model_riglog_material_handover_line,riglog_materials.group_materials_manager,1,1,1,1
+access_riglog_material_handover_line_system,riglog.material.handover.line.system,model_riglog_material_handover_line,base.group_system,1,1,1,1

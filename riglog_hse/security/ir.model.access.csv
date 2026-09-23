@@ -1,0 +1,13 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_riglog_hse_incident_user,riglog.hse.incident.user,model_riglog_hse_incident,riglog_hse.group_hse_user,1,1,1,0
+access_riglog_hse_incident_manager,riglog.hse.incident.manager,model_riglog_hse_incident,riglog_hse.group_hse_manager,1,1,1,1
+access_riglog_hse_incident_system,riglog.hse.incident.system,model_riglog_hse_incident,base.group_system,1,1,1,1
+access_riglog_hse_observation_user,riglog.hse.observation.user,model_riglog_hse_observation,riglog_hse.group_hse_user,1,1,1,0
+access_riglog_hse_observation_manager,riglog.hse.observation.manager,model_riglog_hse_observation,riglog_hse.group_hse_manager,1,1,1,1
+access_riglog_hse_observation_system,riglog.hse.observation.system,model_riglog_hse_observation,base.group_system,1,1,1,1
+access_riglog_hse_inspection_user,riglog.hse.inspection.user,model_riglog_hse_inspection,riglog_hse.group_hse_user,1,1,1,0
+access_riglog_hse_inspection_manager,riglog.hse.inspection.manager,model_riglog_hse_inspection,riglog_hse.group_hse_manager,1,1,1,1
+access_riglog_hse_inspection_system,riglog.hse.inspection.system,model_riglog_hse_inspection,base.group_system,1,1,1,1
+access_riglog_hse_inspection_line_user,riglog.hse.inspection.line.user,model_riglog_hse_inspection_line,riglog_hse.group_hse_user,1,1,1,0
+access_riglog_hse_inspection_line_manager,riglog.hse.inspection.line.manager,model_riglog_hse_inspection_line,riglog_hse.group_hse_manager,1,1,1,1
+access_riglog_hse_inspection_line_system,riglog.hse.inspection.line.system,model_riglog_hse_inspection_line,base.group_system,1,1,1,1

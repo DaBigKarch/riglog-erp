@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+    <!-- List View -->
+    <record id="view_workforce_compliance_case_list" model="ir.ui.view">
+        <field name="name">workforce.compliance.case.list</field>
+        <field name="model">workforce.compliance.case</field>
+        <field name="arch" type="xml">
+            <list string="Compliance Cases">
+                <field name="name"/>
+                <field name="employee_name"/>
+                <field name="incident_date"/>
+                <field name="state"/>
+                <field name="create_date"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_workforce_compliance_case_form" model="ir.ui.view">
+        <field name="name">workforce.compliance.case.form</field>
+        <field name="model">workforce.compliance.case</field>
+        <field name="arch" type="xml">
+
+            <form string="Compliance Case">
+
+                <header>
+
+                    <button name="action_start_investigation"
+                            string="Start Investigation"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'reported'"/>
+
+                    <button name="action_issue_warning"
+                            string="Issue Formal Warning"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'investigation'"/>
+
+                    <button name="action_suspend"
+                            string="Suspend"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'warning'"/>
+
+                    <button name="action_resolve"
+                            string="Resolve"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'suspended'"/>
+
+                    <field name="state"
+                           widget="statusbar"
+                           statusbar_visible="reported,investigation,warning,suspended,resolved"/>
+
+                </header>
+
+                <sheet>
+
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+
+                    <group>
+
+                        <group>
+                            <field name="employee_name"/>
+                            <field name="incident_date"/>
+                            <field name="violation_type"/>
+                            <field name="severity"/>
+                        </group>
+
+                        <group>
+                            <field name="state"/>
+                            <field name="investigator_id"/>
+                            <field name="warning_date"/>
+                            <field name="suspension_start"/>
+                            <field name="suspension_end"/>
+                        </group>
+
+                    </group>
+
+                    <notebook>
+
+                        <page string="Incident">
+                            <field name="description"/>
+                        </page>
+
+                        <page string="Investigation">
+                            <group>
+                                <field name="notes"/>
+                            </group>
+                            <group>
+                                <field name="resolution_notes"/>
+                            </group>
+                        </page>
+
+                        <page string="Activity Log">
+
+                            <field name="activity_ids"
+                                   readonly="1"
+                                   nolabel="1">
+
+                                <list string="Case Activity">
+                                    <field name="activity_date"/>
+                                    <field name="activity_type"/>
+                                    <field name="description"/>
+                                    <field name="user_id"/>
+                                </list>
+
+                            </field>
+
+                        </page>
+
+                    </notebook>
+
+                </sheet>
+
+            </form>
+
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,7 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_riglog_purchase_request_system,riglog.purchase.request.system,model_riglog_purchase_request,base.group_system,1,1,1,1
+access_riglog_purchase_request_user,riglog.purchase.request.user,model_riglog_purchase_request,riglog_procurement.group_procurement_user,1,1,1,0
+access_riglog_purchase_request_approver,riglog.purchase.request.approver,model_riglog_purchase_request,riglog_procurement.group_procurement_approver,1,1,1,0
+access_riglog_purchase_request_line_system,riglog.purchase.request.line.system,model_riglog_purchase_request_line,base.group_system,1,1,1,1
+access_riglog_purchase_request_line_user,riglog.purchase.request.line.user,model_riglog_purchase_request_line,riglog_procurement.group_procurement_user,1,1,1,0
+access_riglog_purchase_request_line_approver,riglog.purchase.request.line.approver,model_riglog_purchase_request_line,riglog_procurement.group_procurement_approver,1,1,1,0

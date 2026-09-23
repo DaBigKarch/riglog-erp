@@ -1,0 +1,24 @@
+<odoo>
+
+    <record id="seq_riglog_hse_incident" model="ir.sequence">
+        <field name="name">RigLog HSE Incident</field>
+        <field name="code">riglog.hse.incident</field>
+        <field name="prefix">HSE/INC/</field>
+        <field name="padding">5</field>
+    </record>
+
+    <record id="seq_riglog_hse_observation" model="ir.sequence">
+        <field name="name">RigLog HSE Safety Observation</field>
+        <field name="code">riglog.hse.observation</field>
+        <field name="prefix">HSE/OBS/</field>
+        <field name="padding">5</field>
+    </record>
+
+    <record id="seq_riglog_hse_inspection" model="ir.sequence">
+        <field name="name">RigLog HSE Safety Inspection</field>
+        <field name="code">riglog.hse.inspection</field>
+        <field name="prefix">HSE/INSP/</field>
+        <field name="padding">5</field>
+    </record>
+
+</odoo>

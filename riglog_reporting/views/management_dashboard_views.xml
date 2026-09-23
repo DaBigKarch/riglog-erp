@@ -1,0 +1,62 @@
+<odoo>
+
+    <record id="riglog_management_dashboard_view_form" model="ir.ui.view">
+        <field name="name">riglog.management.dashboard.form</field>
+        <field name="model">riglog.management.dashboard</field>
+        <field name="arch" type="xml">
+            <form string="RigLog Management KPIs"
+                  create="false"
+                  edit="false"
+                  delete="false">
+
+                <sheet>
+
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+
+                    <group string="Projects &amp; Procurement" col="4">
+                        <field name="active_projects" readonly="1"/>
+                        <field name="pending_purchase_requests" readonly="1"/>
+                        <field name="approved_awaiting_rfq" readonly="1"/>
+                        <field name="open_material_handovers" readonly="1"/>
+                    </group>
+
+                    <group string="Health, Safety &amp; Environment" col="4">
+                        <field name="open_hse_incidents" readonly="1"/>
+                        <field name="open_safety_observations" readonly="1"/>
+                        <field name="inspections_in_progress" readonly="1"/>
+                        <field name="overdue_corrective_actions" readonly="1"/>
+                    </group>
+
+                    <group string="People &amp; Fleet" col="4">
+                        <field name="employees" readonly="1"/>
+                        <field name="vehicles" readonly="1"/>
+                        <field name="attendance_today" readonly="1"/>
+                        <field name="pending_leave_requests" readonly="1"/>
+                    </group>
+
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="riglog_management_dashboard_action" model="ir.actions.act_window">
+        <field name="name">Management KPIs</field>
+        <field name="res_model">riglog.management.dashboard</field>
+        <field name="view_mode">form</field>
+        <field name="res_id" ref="riglog_management_dashboard_record"/>
+    </record>
+
+    <menuitem
+        id="riglog_management_dashboard_menu"
+        name="Management KPIs"
+        action="riglog_management_dashboard_action"
+        sequence="5"
+        groups="base.group_system"
+    />
+
+</odoo>

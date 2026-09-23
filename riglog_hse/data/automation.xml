@@ -1,0 +1,14 @@
+<odoo>
+
+    <record id="cron_riglog_hse_deadline_reminders" model="ir.cron">
+        <field name="name">RigLog HSE Deadline Reminders</field>
+        <field name="model_id" ref="model_riglog_hse_incident"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_hse_deadline_reminders()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="user_id" ref="base.user_admin"/>
+        <field name="active">True</field>
+    </record>
+
+</odoo>

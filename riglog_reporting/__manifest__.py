@@ -1,0 +1,27 @@
+{
+    'name': 'RigLog Reporting',
+    'version': '19.0.1.0.0',
+    'summary': 'RigLog management KPI reporting',
+    'author': 'Vecora Technologies',
+    'license': 'LGPL-3',
+    'category': 'Reporting',
+    'depends': [
+        'base',
+        'project',
+        'purchase',
+        'fleet',
+        'hr',
+        'hr_attendance',
+        'hr_holidays',
+        'riglog_procurement',
+        'riglog_materials',
+        'riglog_hse',
+    ],
+    'data': [
+        'security/ir.model.access.csv',
+        'data/dashboard.xml',
+        'views/management_dashboard_views.xml',
+    ],
+    'installable': True,
+    'application': True,
+}

@@ -1,0 +1,7 @@
+<odoo>
+
+    <record id="riglog_management_dashboard_record" model="riglog.management.dashboard">
+        <field name="name">RigLog Management KPIs</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,2 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_riglog_management_dashboard_system,riglog.management.dashboard.system,model_riglog_management_dashboard,base.group_system,1,1,1,1

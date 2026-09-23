@@ -1,0 +1,28 @@
+<odoo>
+
+    <record id="module_category_riglog" model="ir.module.category">
+        <field name="name">RigLog</field>
+        <field name="description">RigLog ERP custom applications</field>
+        <field name="sequence">30</field>
+    </record>
+
+    <record id="riglog_procurement_privilege" model="res.groups.privilege">
+        <field name="name">Procurement</field>
+        <field name="category_id" ref="module_category_riglog"/>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="group_procurement_user" model="res.groups">
+        <field name="name">Procurement User</field>
+        <field name="privilege_id" ref="riglog_procurement_privilege"/>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="group_procurement_approver" model="res.groups">
+        <field name="name">Procurement Approver</field>
+        <field name="privilege_id" ref="riglog_procurement_privilege"/>
+        <field name="sequence">20</field>
+        <field name="implied_ids" eval="[(4, ref('group_procurement_user'))]"/>
+    </record>
+
+</odoo>

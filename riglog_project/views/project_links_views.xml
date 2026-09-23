@@ -1,0 +1,89 @@
+<odoo>
+
+    <record id="riglog_purchase_request_view_form_project" model="ir.ui.view">
+        <field name="name">riglog.purchase.request.form.project</field>
+        <field name="model">riglog.purchase.request</field>
+        <field name="inherit_id" ref="riglog_procurement.purchase_request_view_form"/>
+        <field name="arch" type="xml">
+
+            <field name="department_id" position="after">
+                <field name="project_id"/>
+            </field>
+
+        </field>
+    </record>
+
+
+    <record id="riglog_purchase_request_view_list_project" model="ir.ui.view">
+        <field name="name">riglog.purchase.request.list.project</field>
+        <field name="model">riglog.purchase.request</field>
+        <field name="inherit_id" ref="riglog_procurement.purchase_request_view_list"/>
+        <field name="arch" type="xml">
+
+            <field name="department_id" position="after">
+                <field name="project_id" optional="show"/>
+            </field>
+
+        </field>
+    </record>
+
+
+    <record id="riglog_material_handover_view_form_project" model="ir.ui.view">
+        <field name="name">riglog.material.handover.form.project</field>
+        <field name="model">riglog.material.handover</field>
+        <field name="inherit_id" ref="riglog_materials.material_handover_view_form"/>
+        <field name="arch" type="xml">
+
+            <field name="department_id" position="after">
+                <field name="project_id"/>
+            </field>
+
+        </field>
+    </record>
+
+
+    <record id="riglog_material_handover_view_list_project" model="ir.ui.view">
+        <field name="name">riglog.material.handover.list.project</field>
+        <field name="model">riglog.material.handover</field>
+        <field name="inherit_id" ref="riglog_materials.material_handover_view_list"/>
+        <field name="arch" type="xml">
+
+            <field name="department_id" position="after">
+                <field name="project_id" optional="show"/>
+            </field>
+
+        </field>
+    </record>
+
+
+    <record id="riglog_project_project_view_form" model="ir.ui.view">
+        <field name="name">riglog.project.project.form</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//header" position="inside">
+
+                <button
+                    name="action_view_riglog_purchase_requests"
+                    string="Purchase Requests"
+                    type="object"
+                    class="oe_highlight"
+                    groups="base.group_user"
+                    invisible="is_template"
+                />
+
+                <button
+                    name="action_view_riglog_handovers"
+                    string="Material Handovers"
+                    type="object"
+                    groups="base.group_user"
+                    invisible="is_template"
+                />
+
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

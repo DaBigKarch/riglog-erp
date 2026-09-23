@@ -1,0 +1,200 @@
+<odoo>
+
+    <record id="purchase_request_view_list" model="ir.ui.view">
+        <field name="name">riglog.purchase.request.view.list</field>
+        <field name="model">riglog.purchase.request</field>
+        <field name="arch" type="xml">
+            <list string="Purchase Requests">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <field name="request_date"/>
+                <field name="required_date"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="purchase_request_view_form" model="ir.ui.view">
+        <field name="name">riglog.purchase.request.view.form</field>
+        <field name="model">riglog.purchase.request</field>
+        <field name="arch" type="xml">
+            <form string="RigLog Purchase Request">
+
+                <header>
+                    <button
+                        name="action_submit"
+                        string="Submit"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="state != 'draft'"
+                    />
+
+                    <button
+                        name="action_approve"
+                        string="Approve"
+                        type="object"
+                        class="oe_highlight"
+                        groups="riglog_procurement.group_procurement_approver,base.group_system"
+                        invisible="state != 'submitted'"
+                    />
+
+                    <button
+                        name="action_reject"
+                        string="Reject"
+                        type="object"
+                        groups="riglog_procurement.group_procurement_approver,base.group_system"
+                        invisible="state != 'submitted'"
+                    />
+
+                    <button
+                        name="action_reset_draft"
+                        string="Reset to Draft"
+                        type="object"
+                        invisible="state != 'rejected'"
+                    />
+
+                    <button
+                        name="action_create_rfq"
+                        string="Create RFQ"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="state != 'approved' or purchase_order_id"
+                    />
+
+                    <button
+                        name="action_open_rfq"
+                        string="Open RFQ"
+                        type="object"
+                        invisible="not purchase_order_id"
+                    />
+
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,submitted,approved,rejected"
+                    />
+                </header>
+
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="department_id"/>
+                            <field name="requested_by_user_id"/>
+                        </group>
+
+                        <group>
+                            <field name="request_date"/>
+                            <field name="required_date"/>
+                            <field name="company_id"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Requested Items">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="description"/>
+                                    <field name="quantity"/>
+                                    <field name="uom_id"/>
+                                </list>
+                            </field>
+                        </page>
+
+                        <page string="Justification">
+                            <field name="justification" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+
+                <chatter/>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="purchase_request_view_search" model="ir.ui.view">
+        <field name="name">riglog.purchase.request.view.search</field>
+        <field name="model">riglog.purchase.request</field>
+        <field name="arch" type="xml">
+            <search string="Purchase Requests">
+
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="department_id"/>
+                <field name="state"/>
+
+                <filter
+                    name="draft"
+                    string="Draft"
+                    domain="[('state', '=', 'draft')]"
+                />
+
+                <filter
+                    name="submitted"
+                    string="Submitted"
+                    domain="[('state', '=', 'submitted')]"
+                />
+
+                <filter
+                    name="approved"
+                    string="Approved"
+                    domain="[('state', '=', 'approved')]"
+                />
+
+                <filter
+                    name="rejected"
+                    string="Rejected"
+                    domain="[('state', '=', 'rejected')]"
+                />
+
+                <group>
+                    <filter
+                        name="group_department"
+                        string="Department"
+                        domain="[]"
+                        context="{'group_by': 'department_id'}"
+                    />
+
+                    <filter
+                        name="group_state"
+                        string="Status"
+                        domain="[]"
+                        context="{'group_by': 'state'}"
+                    />
+                </group>
+
+            </search>
+        </field>
+    </record>
+
+    <record id="purchase_request_action" model="ir.actions.act_window">
+        <field name="name">Purchase Requests</field>
+        <field name="res_model">riglog.purchase.request</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="purchase_request_view_list"/>
+    </record>
+
+    <menuitem
+        id="riglog_procurement_menu_root"
+        name="RigLog"
+        sequence="20"
+    />
+
+    <menuitem
+        id="riglog_procurement_menu_requests"
+        name="Purchase Requests"
+        parent="riglog_procurement_menu_root"
+        action="purchase_request_action"
+        sequence="10"
+    />
+
+</odoo>

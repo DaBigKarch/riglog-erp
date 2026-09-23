@@ -1,0 +1,131 @@
+<odoo>
+
+    <record id="material_handover_view_list" model="ir.ui.view">
+        <field name="name">riglog.material.handover.view.list</field>
+        <field name="model">riglog.material.handover</field>
+        <field name="arch" type="xml">
+            <list string="Material Handovers">
+                <field name="name"/>
+                <field name="picking_id"/>
+                <field name="handed_to_employee_id"/>
+                <field name="department_id"/>
+                <field name="handover_date"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="material_handover_view_form" model="ir.ui.view">
+        <field name="name">riglog.material.handover.view.form</field>
+        <field name="model">riglog.material.handover</field>
+        <field name="arch" type="xml">
+            <form string="Material Handover">
+
+                <header>
+                    <button
+                        name="action_mark_handed_over"
+                        string="Mark as Handed Over"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="state != 'draft'"
+                    />
+
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,handed_over"
+                    />
+                </header>
+
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="picking_id"/>
+                            <field name="handed_to_employee_id"/>
+                            <field name="department_id"/>
+                        </group>
+
+                        <group>
+                            <field name="handover_date"/>
+                            <field name="company_id"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Materials">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="product_id"/>
+                                    <field name="quantity"/>
+                                    <field name="uom_id"/>
+                                </list>
+                            </field>
+                        </page>
+
+                        <page string="Notes">
+                            <field name="notes" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+
+                <chatter/>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="material_handover_view_search" model="ir.ui.view">
+        <field name="name">riglog.material.handover.view.search</field>
+        <field name="model">riglog.material.handover</field>
+        <field name="arch" type="xml">
+            <search string="Material Handovers">
+                <field name="name"/>
+                <field name="picking_id"/>
+                <field name="handed_to_employee_id"/>
+                <field name="department_id"/>
+                <field name="state"/>
+
+                <filter
+                    name="draft"
+                    string="Draft"
+                    domain="[('state', '=', 'draft')]"
+                />
+
+                <filter
+                    name="handed_over"
+                    string="Handed Over"
+                    domain="[('state', '=', 'handed_over')]"
+                />
+            </search>
+        </field>
+    </record>
+
+    <record id="material_handover_action" model="ir.actions.act_window">
+        <field name="name">Material Handovers</field>
+        <field name="res_model">riglog.material.handover</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="material_handover_view_list"/>
+    </record>
+
+    <menuitem
+        id="riglog_materials_menu"
+        name="Materials"
+        parent="riglog_procurement.riglog_procurement_menu_root"
+        sequence="20"
+    />
+
+    <menuitem
+        id="riglog_material_handover_menu"
+        name="Material Handovers"
+        parent="riglog_materials_menu"
+        action="material_handover_action"
+        sequence="10"
+    />
+
+</odoo>

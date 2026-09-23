@@ -1,0 +1,29 @@
+<odoo>
+
+    <record id="purchase_request_rfq_wizard_view_form" model="ir.ui.view">
+        <field name="name">riglog.purchase.request.rfq.wizard.form</field>
+        <field name="model">riglog.purchase.request.rfq.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create RFQ">
+                <group>
+                    <field name="request_id"/>
+                    <field name="partner_id"/>
+                </group>
+
+                <footer>
+                    <button
+                        name="action_create_rfq"
+                        string="Create RFQ"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button
+                        string="Cancel"
+                        special="cancel"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

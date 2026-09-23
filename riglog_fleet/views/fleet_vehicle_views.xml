@@ -1,0 +1,48 @@
+<odoo>
+
+    <record id="riglog_fleet_vehicle_view_form" model="ir.ui.view">
+        <field name="name">riglog.fleet.vehicle.form</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+        <field name="arch" type="xml">
+
+            <field name="next_assignation_date" position="after">
+                <field name="project_id"/>
+            </field>
+
+        </field>
+    </record>
+
+
+    <record id="riglog_project_project_view_form_fleet" model="ir.ui.view">
+        <field name="name">riglog.project.project.form.fleet</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//div[@name='button_box']" position="inside">
+
+                <button
+                    class="oe_stat_button"
+                    type="object"
+                    name="action_view_riglog_vehicles"
+                    icon="fa-car"
+                    groups="base.group_user"
+                    invisible="is_template"
+                >
+                    <div class="o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="riglog_vehicle_count"/>
+                        </span>
+                        <span class="o_stat_text">
+                            Vehicles
+                        </span>
+                    </div>
+                </button>
+
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

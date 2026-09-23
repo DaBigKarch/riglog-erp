@@ -1,0 +1,219 @@
+<odoo>
+
+    <record id="hse_inspection_view_list" model="ir.ui.view">
+        <field name="name">riglog.hse.inspection.view.list</field>
+        <field name="model">riglog.hse.inspection</field>
+        <field name="arch" type="xml">
+            <list string="Safety Inspections">
+                <field name="name"/>
+                <field name="inspection_type"/>
+                <field name="inspection_date"/>
+                <field name="location"/>
+                <field name="inspector_id"/>
+                <field name="project_id"/>
+                <field name="overall_result" widget="badge"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+
+    <record id="hse_inspection_view_form" model="ir.ui.view">
+        <field name="name">riglog.hse.inspection.view.form</field>
+        <field name="model">riglog.hse.inspection</field>
+        <field name="arch" type="xml">
+            <form string="Safety Inspection">
+
+                <header>
+
+                    <button
+                        name="action_start"
+                        string="Start Inspection"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="state != 'draft'"
+                    />
+
+                    <button
+                        name="action_complete"
+                        string="Complete Inspection"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="state != 'in_progress'"
+                    />
+
+                    <button
+                        name="action_reset"
+                        string="Reset"
+                        type="object"
+                        invisible="state != 'completed'"
+                    />
+
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,in_progress,completed"
+                    />
+
+                </header>
+
+                <sheet>
+
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+
+                    <group>
+
+                        <group>
+                            <field name="inspection_type"/>
+                            <field name="inspection_date"/>
+                            <field name="location"/>
+                        </group>
+
+                        <group>
+                            <field name="inspector_id"/>
+                            <field name="project_id"/>
+                            <field name="overall_result"/>
+                        </group>
+
+                    </group>
+
+                    <notebook>
+
+                        <page string="Checklist">
+
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="checklist_item"/>
+                                    <field name="result"/>
+                                    <field name="comment"/>
+                                </list>
+                            </field>
+
+                        </page>
+
+                        <page string="Findings">
+
+                            <group>
+                                <field name="summary"/>
+                                <field name="findings"/>
+                            </group>
+
+                        </page>
+
+                        <page string="Corrective Action">
+
+                            <group>
+                                <field name="action_required"/>
+                                <field name="action_owner_id"/>
+                                <field name="action_due_date"/>
+                            </group>
+
+                        </page>
+
+                        <page string="Closure">
+
+                            <group>
+                                <field name="completed_date"/>
+                                <field name="closure_note"/>
+                            </group>
+
+                        </page>
+
+                    </notebook>
+
+                </sheet>
+
+                <chatter/>
+
+            </form>
+        </field>
+    </record>
+
+
+    <record id="hse_inspection_view_search" model="ir.ui.view">
+        <field name="name">riglog.hse.inspection.view.search</field>
+        <field name="model">riglog.hse.inspection</field>
+        <field name="arch" type="xml">
+            <search string="Safety Inspections">
+                <field name="name"/>
+                <field name="inspection_type"/>
+                <field name="location"/>
+                <field name="inspector_id"/>
+                <field name="project_id"/>
+                <field name="state"/>
+
+                <filter
+                    name="draft"
+                    string="Draft"
+                    domain="[('state', '=', 'draft')]"
+                />
+
+                <filter
+                    name="in_progress"
+                    string="In Progress"
+                    domain="[('state', '=', 'in_progress')]"
+                />
+
+                <filter
+                    name="completed"
+                    string="Completed"
+                    domain="[('state', '=', 'completed')]"
+                />
+            </search>
+        </field>
+    </record>
+
+
+    <record id="hse_inspection_action" model="ir.actions.act_window">
+        <field name="name">Safety Inspections</field>
+        <field name="res_model">riglog.hse.inspection</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="hse_inspection_view_list"/>
+    </record>
+
+
+    <record id="riglog_project_view_form_hse_inspection" model="ir.ui.view">
+        <field name="name">riglog.project.project.form.hse.inspection</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//div[@name='button_box']" position="inside">
+
+                <button
+                    class="oe_stat_button"
+                    type="object"
+                    name="action_view_riglog_hse_inspections"
+                    icon="fa-clipboard"
+                    groups="base.group_user"
+                    invisible="is_template"
+                >
+                    <div class="o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="riglog_hse_inspection_count"/>
+                        </span>
+                        <span class="o_stat_text">
+                            Safety Inspections
+                        </span>
+                    </div>
+                </button>
+
+            </xpath>
+
+        </field>
+    </record>
+
+
+    <menuitem
+        id="riglog_hse_inspection_menu"
+        name="Safety Inspections"
+        parent="riglog_hse_menu_root"
+        action="hse_inspection_action"
+        sequence="30"
+    />
+
+</odoo>
